@@ -6,24 +6,17 @@ Embedded Python を使用して IRIS グローバル($LB) を Pandas Dataframe �
   
 以下のようなグローバルを、Embedded Python を使用して Dataframe に変換します。
 ~~~
-USER>zwrite ^ISJ
-^ISJ(0)="Name,Age,Address"
-^ISJ(1)="佐藤,50,東京"
-^ISJ(2)="加藤,40,大阪"
-^ISJ(3)="伊藤,30,京都"
+USER>zw ^ISJ
+^ISJ(1)=$lb("Name","Age","Address")
+^ISJ(2)=$lb("佐藤","50","東京")
+^ISJ(3)=$lb("加藤","40","大阪")
+^ISJ(4)=$lb("伊藤","30","京都")
 ~~~
   
 [%Library.GlobalクラスのGetクエリ](https://docs.intersystems.com/irislatest/csp/documatic/%25CSP.Documatic.cls?&LIBRARY=%25SYS&CLASSNAME=%25Library.Global#Get) を使用して取得し、iris.sql.execを使用してdataframeに格納する方法があります。  
 ただし、こちらの方法はリスト形式($lb)のまま dataframe に変換します。
 
 ~~~
-USER>zwrite ^ISJ
-^ISJ=4
-^ISJ(1)=$lb("Name","Age","Address")
-^ISJ(2)=$lb("佐藤","50","東京")
-^ISJ(3)=$lb("加藤","40","大阪")
-^ISJ(4)=$lb("伊藤","30","京都")
-
 USER>do $system.Python.Shell()
 
 Python 3.9.5 (default, Apr 15 2022, 01:28:04) [MSC v.1927 64 bit (AMD64)] on win32
