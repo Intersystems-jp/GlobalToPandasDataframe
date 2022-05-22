@@ -6,7 +6,7 @@ Embedded Python を使用して IRIS グローバル($LB) を Pandas Dataframe �
   
 以下のようなグローバルを、Embedded Python を使用して Dataframe に変換します。
 ~~~
-USER>zw ^ISJ
+USER>zwrite ^ISJ
 ^ISJ(0)="Name,Age,Address"
 ^ISJ(1)="佐藤,50,東京"
 ^ISJ(2)="加藤,40,大阪"
@@ -17,7 +17,7 @@ USER>zw ^ISJ
 ただし、こちらの方法はリスト形式($lb)のまま dataframe に変換します。
 
 ~~~
-USER>zw ^ISJ
+USER>zwrite ^ISJ
 ^ISJ=4
 ^ISJ(1)=$lb("Name","Age","Address")
 ^ISJ(2)=$lb("佐藤","50","東京")
@@ -94,7 +94,7 @@ Type quit() or Ctrl-D to exit this shell.
 ~~~
 >znspace "USER"                               // 対象のネームスペースに移動
 USER>do ##class(User.TestStoredProc1).init()  // サンプルデータ(^ISJ)の作成
-USER>zw ^ISJ                                  // データが作成されていることを確認
+USER>zwrite ^ISJ                                  // データが作成されていることを確認
 ^ISJ(1)=$lb("Name","Age","Address")
 ^ISJ(2)=$lb("佐藤","50","東京")
 ^ISJ(3)=$lb("加藤","40","大阪")
