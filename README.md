@@ -47,7 +47,7 @@ Type quit() or Ctrl-D to exit this shell.
 必要があります。  
   
 上記1の「IRIS側で処理する」場合、[カスタムクラスクエリ](https://jp.community.intersystems.com/node/481186) を使用してグローバル内の$LISTの各データを返すストアドプロシージャを作成し、それをSQL経由でアクセスする方法が考えられます。  
-カスタムクエリを使用する方法は、弊社FAQサイト([既存のグローバルデータをオブジェクトやSQLインタフェースから利用する方法はありますか？](https://faq.intersystems.co.jp/csp/faq/result.csp?DocNo=50))でもご紹介しています。
+カスタムクラスクエリを使用する方法は、弊社FAQサイト([SQL文ではなく、ユーザコードでクラスクエリを記述する方法はありますか？](https://faq.intersystems.co.jp/csp/faq/result.csp?DocNo=50))でもご紹介しています。
   
 上記FAQで紹介しているサンプルクラスを使用して、^ISJ のリストを要素別に抽出するサンプルを作成してみました。  
 ^ISJの value の結果列が$LB形式で3要素なので、サンプルを以下のように変更します。
