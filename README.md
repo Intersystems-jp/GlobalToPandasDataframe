@@ -13,7 +13,8 @@ USER>zw ^ISJ
 ^ISJ(3)="伊藤,30,京都"
 ~~~
   
-[%Library.GlobalクラスのGetクエリ](https://docs.intersystems.com/irislatest/csp/documatic/%25CSP.Documatic.cls?&LIBRARY=%25SYS&CLASSNAME=%25Library.Global#Get) を使用して取得し、iris.sql.execを使用してdataframeに格納する方法がありますが、こちらの場合は リスト形式($lb)のまま dataframe に変換します。
+[%Library.GlobalクラスのGetクエリ](https://docs.intersystems.com/irislatest/csp/documatic/%25CSP.Documatic.cls?&LIBRARY=%25SYS&CLASSNAME=%25Library.Global#Get) を使用して取得し、iris.sql.execを使用してdataframeに格納する方法があります。  
+ただし、こちらの方法はリスト形式($lb)のまま dataframe に変換します。
 
 ~~~
 USER>zw ^ISJ
@@ -46,7 +47,7 @@ IRIS側で処理する場合、[カスタムクラスクエリ](https://jp.commu
 カスタムクエリを使用する方法は、弊社FAQサイト([既存のグローバルデータをオブジェクトやSQLインタフェースから利用する方法はありますか？](https://faq.intersystems.co.jp/csp/faq/result.csp?DocNo=50))でもご紹介しています。
   
 上記FAQで紹介しているサンプルクラスを使用して、^ISJ のリストを要素別に抽出するサンプルを作成してみました。  
-^ISJのValueの結果列が＄LB形式で3つなので、以下のように変更します。
+^ISJのValueの結果列が＄LB形式で3つなので、サンプルを以下のように変更します。
   
 ★GFetchクラスメソッド
 ~~~
@@ -80,11 +81,12 @@ Type quit() or Ctrl-D to exit this shell.
 ***
 **※※※以下、GitHub用**
 ***
+  
 
 **手順**
 ***
-1. スタジオをご利用の方は、User.TestStoredProc1.xml をスタジオ・管理ポータルから対象のネームスペースにインポートしてください。
-   VSCodeをご利用の方は、IRISに接続後、User.TestStoredProc1.cls を保存してご利用ください。
+1. スタジオをご利用の方は、User.TestStoredProc1.xml をスタジオ・管理ポータルから対象のネームスペースにインポートしてください。  
+   VSCodeをご利用の方は、IRISに接続後、対象のネームスペースにTestStoredProc1.cls を保存してご利用ください。  
 2. テストで使用するグローバルデータ ^ISJ を作成します。
 ~~~
 >znspace "USER"                               // 対象のネームスペースに移動
@@ -95,6 +97,7 @@ USER>zw ^ISJ                                  // データが作成されてい�
 ^ISJ(3)=$lb("加藤","40","大阪")
 ^ISJ(4)=$lb("伊藤","30","京都")
 ~~~
+  
 
 **確認方法**
 ***
