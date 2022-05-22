@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="IRIS" version="26" zv="IRIS for Windows (x86-64) 2022.1 (Build 172U)" ts="2022-05-22 12:12:09">
+<Class name="User.TestStoredProc1">
+<ClassType/>
+<ProcedureBlock>1</ProcedureBlock>
+<Super>%RegisteredObject</Super>
+<TimeChanged>66251,43337.7192183</TimeChanged>
+<TimeCreated>58878,60016</TimeCreated>
+
+<Projection name="JavaProjection1">
+<Type>%Projection.Java</Type>
+</Projection>
+
+<Property name="glvn">
+<Type>%String</Type>
+<Parameter name="TRUNCATE" value="1"/>
+</Property>
+
+<Method name="init">
+<ClassMethod>1</ClassMethod>
+<Language>objectscript</Language>
+<Implementation><![CDATA[
+	kill ^ISJ
+	set ^ISJ(1)=$lb("Name","Age","Address")
+	set ^ISJ(2)=$lb("佐藤","50","東京")
+	set ^ISJ(3)=$lb("加藤","40","大阪")
+	set ^ISJ(4)=$lb("伊藤","30","京都")
+]]></Implementation>
+</Method>
+
+<Method name="GClose">
+<ClassMethod>1</ClassMethod>
+<FormalSpec>QHandle:%Binary</FormalSpec>
+<Language>objectscript</Language>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+ Set QHandle=""
+ Quit $$$OK
+]]></Implementation>
+</Method>
+
+<Method name="GExecute">
+<ClassMethod>1</ClassMethod>
+<FormalSpec><![CDATA[&QHandle:%Binary,glvn:%String]]></FormalSpec>
+<Language>objectscript</Language>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+ Set QHandle=$LB("",glvn)
+ Quit $$$OK
+]]></Implementation>
+</Method>
+
+<Method name="GFetch">
+<ClassMethod>1</ClassMethod>
+<FormalSpec><![CDATA[&QHandle:%Binary,&Row:%List,&AtEnd:%Integer=0]]></FormalSpec>
+<Language>objectscript</Language>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+ Set Row=""
+ ; pull data out of QHandle
+ Set x=$List(QHandle,1)
+ Set glvn=$List(QHandle,2)
+ 
+ ; $Order to next node
+ Set x=$O(@glvn@(x))
+
+ ; update QHandle for next fetch
+ Set QHandle=$LB(x,glvn)
+ ; test for end
+ If x="" Set AtEnd=1 Quit $$$OK
+ ; fill in Row with data for this row
+ 
+ //Set Row=$LB($na(@glvn@(x)),@glvn@(x))
+ Set Row=$LB($na(@glvn@(x)),$LIST(@glvn@(x),1),$LIST(@glvn@(x),2),$LIST(@glvn@(x),3))
+ Quit $$$OK
+]]></Implementation>
+</Method>
+
+<Method name="MExecute">
+<ClassMethod>1</ClassMethod>
+<FormalSpec>command:%String</FormalSpec>
+<Language>objectscript</Language>
+<ReturnType>%String</ReturnType>
+<Implementation><![CDATA[
+ Set %value = ""
+ If $Extract(command,1)="=" {
+   Set command = "Set %value "_command
+ }
+ Xecute command
+ Set value = %value
+ Kill %value
+ Quit value
+]]></Implementation>
+</Method>
+
+<Query name="G">
+<Type>%Query</Type>
+<FormalSpec>glvn:%String</FormalSpec>
+<SqlProc>1</SqlProc>
+<Parameter name="CONTAINID" value="0"/>
+<Parameter name="ROWSPEC" value="Node:%String, Value1:%String, Value2:%String, Value3:%String"/>
+</Query>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+<DataLocation>^ooTestStoredProc1D</DataLocation>
+<DefaultData>TestStoredProc1DefaultData</DefaultData>
+<IdLocation>^ooTestStoredProc1D</IdLocation>
+<IndexLocation>^ooTestStoredProc1I</IndexLocation>
+<StreamLocation>^User.TestStoredProc1S</StreamLocation>
+<Data name="TestStoredProc1DefaultData">
+<Value name="1">
+<Value>glvn</Value>
+</Value>
+<Value name="2">
+<Value>%%CLASSNAME</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+</Export>
