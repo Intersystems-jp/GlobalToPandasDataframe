@@ -41,13 +41,16 @@ Type quit() or Ctrl-D to exit this shell.
 >>>
 ~~~
 
-こちらの結果の value を Name, Age, Address に分けてデータフレームに保存する場合、既存の %Global.cls のクエリで行うことはできないため、別途IRIS側でリストを分解してから処理するか、Python側でリストからデータフレームに変換する必要があります。
-
-IRIS側で処理する場合、[カスタムクラスクエリ](https://jp.community.intersystems.com/node/481186) を使用してグローバル内の$LISTの各データを返すストアドプロシージャを作成し、それをSQL経由でアクセスする方法が考えられます。  
+こちらの結果の value を Name, Age, Address に分けて変換したい場合、既存の %Global.cls のクエリで行うことはできないため、
+1. 別途IRIS側でリストを分解してから処理するか、
+2. Python側でリストからデータフレームに変換する
+必要があります。  
+  
+上記1の「IRIS側で処理する」場合、[カスタムクラスクエリ](https://jp.community.intersystems.com/node/481186) を使用してグローバル内の$LISTの各データを返すストアドプロシージャを作成し、それをSQL経由でアクセスする方法が考えられます。  
 カスタムクエリを使用する方法は、弊社FAQサイト([既存のグローバルデータをオブジェクトやSQLインタフェースから利用する方法はありますか？](https://faq.intersystems.co.jp/csp/faq/result.csp?DocNo=50))でもご紹介しています。
   
 上記FAQで紹介しているサンプルクラスを使用して、^ISJ のリストを要素別に抽出するサンプルを作成してみました。  
-^ISJのValueの結果列が＄LB形式で3つなので、サンプルを以下のように変更します。
+^ISJの value の結果列が$LB形式で3要素なので、サンプルを以下のように変更します。
   
 ★GFetchクラスメソッド
 ~~~
