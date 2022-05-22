@@ -78,12 +78,23 @@ Type quit() or Ctrl-D to exit this shell.
 **※※※以下、GitHub用**
 ***
   
-
-**手順**
-***
-1. スタジオをご利用の方は、User.TestStoredProc1.xml をスタジオ・管理ポータルから対象のネームスペースにインポートしてください。  
-   VSCodeをご利用の方は、IRISに接続後、対象のネームスペースにTestStoredProc1.cls を保存してご利用ください。  
-2. テストで使用するグローバルデータ ^ISJ を作成します。
+## サンプルコードについて
+この Git のサンプルコードは、[InterSystems 開発者コミュニティ](https://jp.community.intersystems.com/) に公開している以下記事のサンプルコードです。  
+  
+[Embedded Python を使用して IRIS グローバル($LB) を Pandas Dataframe に変換する方法](https://jp.community.intersystems.com/node/xxxxxx)
+  
+## 含まれるファイル
+* TestStoredProc1.xml　　　<font color="ForestGreen">// スタジオインポート用クラス定義</font>
+* TestStoredProc1.cls   <font color="ForestGreen">// VSCodeインポート用クラス定義</font>
+  
+## セットアップ方法
+動作バージョン InterSystems IRIS 2021.2以降
+  
+スタジオをご利用の方は、User.TestStoredProc1.xml をスタジオ・管理ポータルから対象のネームスペースにインポートしてください。  
+VSCodeをご利用の方は、IRISに接続後、対象のネームスペースにTestStoredProc1.cls を保存してご利用ください。  
+  
+## 事前準備
+テストで使用するグローバルデータ ^ISJ を作成します。
 ~~~
 >znspace "USER"                               // 対象のネームスペースに移動
 USER>do ##class(User.TestStoredProc1).init()  // サンプルデータ(^ISJ)の作成
@@ -94,9 +105,7 @@ USER>zwrite ^ISJ                                  // データが作成されて
 ^ISJ(4)=$lb("伊藤","30","京都")
 ~~~
   
-
-**確認方法**
-***
+## 実行方法
 ターミナルで確認する場合は、以下のように実行します。
 ~~~
 USER>do $system.Python.Shell()
