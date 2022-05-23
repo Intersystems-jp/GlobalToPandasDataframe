@@ -35,9 +35,9 @@ Type quit() or Ctrl-D to exit this shell.
 ~~~
 
 こちらの結果の value を Name, Age, Address に分けて変換したい場合、既存の %Global.cls のクエリで行うことはできないため、
-1. 別途IRIS側でリストを分解してから処理するか、
-2. Python側で分解してから DataFrame に変換する  
-必要があります。  
+1. 別途IRIS側でリスト形式($LB)を分解してから処理するか、
+2. Python側でIRISのリスト形式($LB)をPythonリストに変換し、データフレームに格納する
+  必要があります。  
   
 上記1の「IRIS側で処理する」場合、[カスタムクラスクエリ](https://jp.community.intersystems.com/node/481186) を使用してグローバル内のリストの各データを返すクエリを作成し、それをSQL経由でアクセスする方法が考えられます。  
 カスタムクラスクエリを使用する方法は、[SQL文ではなくユーザコードでクラスクエリを記述する方法はありますか？](https://jp.community.intersystems.com/node/502451) の記事でご紹介しています。
