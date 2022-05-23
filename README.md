@@ -13,8 +13,8 @@ USER>zw ^ISJ
 ^ISJ(4)=$lb("伊藤","30","京都")
 ~~~
   
-[%Library.GlobalクラスのGetクエリ](https://docs.intersystems.com/irislatest/csp/documatic/%25CSP.Documatic.cls?&LIBRARY=%25SYS&CLASSNAME=%25Library.Global#Get) を使用して取得し、iris.sql.execを使用してdataframeに格納する方法があります。  
-ただし、こちらの方法はリスト形式($lb)のまま dataframe に変換します。
+[%Library.GlobalクラスのGetクエリ](https://docs.intersystems.com/irislatest/csp/documatic/%25CSP.Documatic.cls?&LIBRARY=%25SYS&CLASSNAME=%25Library.Global#Get) を使用して取得し、iris.sql.execを使用して DataFrame に格納する方法があります。  
+ただし、こちらの方法はリスト形式($lb)のまま DataFrame に変換します。
 
 ~~~
 USER>do $system.Python.Shell()
@@ -36,7 +36,7 @@ Type quit() or Ctrl-D to exit this shell.
 
 こちらの結果の value を Name, Age, Address に分けて変換したい場合、既存の %Global.cls のクエリで行うことはできないため、
 1. 別途IRIS側でリストを分解してから処理するか、
-2. Python側でリストからデータフレームに変換する
+2. Python側で分解してから DataFrame に変換する  
 必要があります。  
   
 上記1の「IRIS側で処理する」場合、[カスタムクラスクエリ](https://jp.community.intersystems.com/node/481186) を使用してグローバル内のリストの各データを返すクエリを作成し、それをSQL経由でアクセスする方法が考えられます。  
