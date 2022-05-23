@@ -81,7 +81,7 @@ Type quit() or Ctrl-D to exit this shell.
 ## サンプルコードについて
 この Git のサンプルコードは、[InterSystems 開発者コミュニティ](https://jp.community.intersystems.com/) に公開している以下記事のサンプルコードです。  
   
-[Embedded Python を使用して IRIS グローバル($LB) を Pandas Dataframe に変換する方法](https://jp.community.intersystems.com/node/xxxxxx)
+[Embedded Python を使用して IRIS グローバル($LB) を Pandas Dataframe に変換する方法](https://jp.community.intersystems.com/node/518626)
   
 ## 含まれるファイル
 * TestStoredProc1.xml　　　// スタジオインポート用クラス定義
