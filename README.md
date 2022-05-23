@@ -1,5 +1,5 @@
 # GlobalToPandasDataframe
-Embedded Python を使用して IRIS グローバル($LB) を Pandas Dataframe に変換する方法
+Embedded Python を使用して IRIS グローバル([$LB](https://docs.intersystems.com/irislatest/csp/docbookj/DocBook.UI.Page.cls?KEY=RCOS_flistbuild)) を Pandas Dataframe に変換する方法
 
 [Embedded Python で Excel のデータを IRIS グローバルに格納する方法](https://jp.community.intersystems.com/node/516426) では pandas.DataFrame のデータを InterSystems IRIS グローバルに保存する方法をご紹介しました。  
 こちらのサンプルでは、その逆の「InterSystems IRIS グローバル($LB) を pandas.DataFrame にする」方法をご紹介します。 
