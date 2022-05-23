@@ -77,16 +77,16 @@ Type quit() or Ctrl-D to exit this shell.
 ***
 **※※※以下、GitHub用**
 ***
-  
+
 ## サンプルコードについて
 この Git のサンプルコードは、[InterSystems 開発者コミュニティ](https://jp.community.intersystems.com/) に公開している以下記事のサンプルコードです。  
   
 [Embedded Python を使用して IRIS グローバル($LB) を Pandas Dataframe に変換する方法](https://jp.community.intersystems.com/node/xxxxxx)
   
 ## 含まれるファイル
-* TestStoredProc1.xml　　　<font color="ForestGreen">// スタジオインポート用クラス定義</font>
-* TestStoredProc1.cls   <font color="ForestGreen">// VSCodeインポート用クラス定義</font>
-  
+* TestStoredProc1.xml　　　// スタジオインポート用クラス定義
+* TestStoredProc1.cls　　　// VSCodeインポート用クラス定義
+    
 ## セットアップ方法
 動作バージョン InterSystems IRIS 2021.2以降
   
@@ -98,7 +98,7 @@ VSCodeをご利用の方は、IRISに接続後、対象のネームスペース�
 ~~~
 >znspace "USER"                               // 対象のネームスペースに移動
 USER>do ##class(User.TestStoredProc1).init()  // サンプルデータ(^ISJ)の作成
-USER>zwrite ^ISJ                                  // データが作成されていることを確認
+USER>zwrite ^ISJ                              // データが作成されていることを確認
 ^ISJ(1)=$lb("Name","Age","Address")
 ^ISJ(2)=$lb("佐藤","50","東京")
 ^ISJ(3)=$lb("加藤","40","大阪")
