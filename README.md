@@ -38,8 +38,9 @@ Type quit() or Ctrl-D to exit this shell.
 1. 別途IRIS側で、あらかじめリスト形式($LB)を分解してから処理するか、
 3. ~~Python側でIRISのリスト形式($LB)をPythonリストに変換し、データフレームに格納する~~  
    Python側で、IRISのリスト形式($LB)のまま格納されたデータを文字列置換などして DataFrame を作り直す
-  必要があります。  
   
+必要があります。  
+
 上記1の「IRIS側で処理する」場合、[カスタムクラスクエリ](https://jp.community.intersystems.com/node/481186) を使用してグローバル内のリストの各データを返すクエリを作成し、それをSQL経由でアクセスする方法が考えられます。  
 カスタムクラスクエリを使用する方法は、[SQL文ではなくユーザコードでクラスクエリを記述する方法はありますか？](https://jp.community.intersystems.com/node/502451) の記事でご紹介しています。
   
