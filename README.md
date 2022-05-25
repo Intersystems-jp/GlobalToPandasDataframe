@@ -35,7 +35,7 @@ Type quit() or Ctrl-D to exit this shell.
 ~~~
 
 こちらの結果の value を Name, Age, Address に分けて変換したい場合、既存の %Global.cls のクエリで行うことはできないため、
-1. 別途IRIS側で、あらかじめリスト形式($LB)を分解してから処理するか、
+1. IRIS側で、あらかじめリスト形式($LB)を分解してから処理するか、
 3. ~~Python側でIRISのリスト形式($LB)をPythonリストに変換し、データフレームに格納する~~  
    Python側で、IRISのリスト形式($LB)のまま格納されたデータを文字列置換などして DataFrame を作り直す
   
