@@ -7,6 +7,7 @@ Embedded Python を使用して IRIS グローバル([$LB](https://docs.intersys
 以下のようなグローバルを、Embedded Python を使用して Dataframe に変換します。
 ~~~
 USER>zw ^ISJ
+^ISJ2=4
 ^ISJ(1)=$lb("Name","Age","Address")
 ^ISJ(2)=$lb("佐藤","50","東京")
 ^ISJ(3)=$lb("加藤","40","大阪")
@@ -75,7 +76,55 @@ Type quit() or Ctrl-D to exit this shell.
 3 ^ISJ(4)    伊藤    30      京都
 >>>
 ~~~
+
+***
+※以下将来のバージョンで対応予定(現在は日本語未対応)
+
+以下のようなグローバルの場合。
+~~~
+USER>zw ^ISJ2
+^ISJ2=4
+^ISJ2(1)=$lb("Name","Age","Address")
+^ISJ2(2)=$lb("Sato","50","Tokyo")
+^ISJ2(3)=$lb("Kato","40","Osaka")
+^ISJ2(4)=$lb("Ito","30","Kyoto")
+~~~
+
+~~~
+USER>do ##class(%SYS.Python).Shell()
  
+Python 3.9.5 (default, Apr 15 2022, 01:28:04) [MSC v.1927 64 bit (AMD64)] on win32
+Type quit() or Ctrl-D to exit this shell.
+>>> iris.cls("User.PythonTest").getPython('^ISJ')
+   val1 val2     val3
+0  Name  Age  Address
+1  Sato   50    Tokyo
+2  Kato   40    Osaka
+3   Ito   30    Kyoto
+~~~
+
+~~~
+ClassMethod toPythonList(gname As %String, i As %Integer) As %SYS.Python
+{
+	quit ##class("%SYS.Python").ToList(@gname@(i))
+}
+
+ClassMethod getPython(gname As %String) [ Language = python ]
+{
+    import iris
+    import pandas as pd
+    g = iris.gref(gname)
+    cnt=g[None]
+    newlist=[]
+    for i in range(1,cnt+1):
+     datalist=iris.cls(__name__).toPythonList(gname, i)
+     newlist.append(datalist)
+    newdf=pd.DataFrame(newlist,columns=["val1","val2","val3"])
+    print(newdf)
+}
+~~~
+  
+  
 ***
 **※※※以下、GitHub用**
 ***
