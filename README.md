@@ -78,32 +78,13 @@ Type quit() or Ctrl-D to exit this shell.
 ~~~
 
 ***
-※以下将来のバージョンで対応予定(現在は日本語未対応)
+(2022/5/31現在)日本語対応はしていませんが、以下のような方法もあります。将来のバージョンで日本語対応予定です。
+%SYS.Pythonクラスの [ToList()メソッド](https://docs.intersystems.com/iris20221/csp/documatic/%25CSP.Documatic.cls?&LIBRARY=%25SYS&CLASSNAME=%25SYS.Python#ToList)を使用して、IRISリストをPythonリストに変換できます。
 
-以下のようなグローバルの場合。
+1. 以下のようなクラスを作成します。
 ~~~
-USER>zw ^ISJ2
-^ISJ2=4
-^ISJ2(1)=$lb("Name","Age","Address")
-^ISJ2(2)=$lb("Sato","50","Tokyo")
-^ISJ2(3)=$lb("Kato","40","Osaka")
-^ISJ2(4)=$lb("Ito","30","Kyoto")
-~~~
-
-~~~
-USER>do ##class(%SYS.Python).Shell()
- 
-Python 3.9.5 (default, Apr 15 2022, 01:28:04) [MSC v.1927 64 bit (AMD64)] on win32
-Type quit() or Ctrl-D to exit this shell.
->>> iris.cls("User.PythonTest").getPython('^ISJ')
-   val1 val2     val3
-0  Name  Age  Address
-1  Sato   50    Tokyo
-2  Kato   40    Osaka
-3   Ito   30    Kyoto
-~~~
-
-~~~
+Class User.PythonTest Extends %Persistent
+{
 ClassMethod toPythonList(gname As %String, i As %Integer) As %SYS.Python
 {
 	quit ##class("%SYS.Python").ToList(@gname@(i))
@@ -122,7 +103,33 @@ ClassMethod getPython(gname As %String) [ Language = python ]
     newdf=pd.DataFrame(newlist,columns=["val1","val2","val3"])
     print(newdf)
 }
+}
 ~~~
+
+2. 次のように実行します。使用するのは ^ISJ2 のような英数字のみのデータが含まれるリスト形式のグローバルです。
+~~~
+USER>zw ^ISJ2
+^ISJ2=4
+^ISJ2(1)=$lb("Name","Age","Address")
+^ISJ2(2)=$lb("Sato","50","Tokyo")
+^ISJ2(3)=$lb("Kato","40","Osaka")
+^ISJ2(4)=$lb("Ito","30","Kyoto")
+~~~
+
+~~~
+USER>do ##class(%SYS.Python).Shell()
+ 
+Python 3.9.5 (default, Apr 15 2022, 01:28:04) [MSC v.1927 64 bit (AMD64)] on win32
+Type quit() or Ctrl-D to exit this shell.
+>>> iris.cls("User.PythonTest").getPython('^ISJ2')
+   val1 val2     val3
+0  Name  Age  Address
+1  Sato   50    Tokyo
+2  Kato   40    Osaka
+3   Ito   30    Kyoto
+~~~
+
+
   
   
 ***
