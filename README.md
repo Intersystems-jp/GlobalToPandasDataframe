@@ -78,8 +78,8 @@ Type quit() or Ctrl-D to exit this shell.
 ~~~
 
 ***
-(2022/5/31現在)日本語対応はしていませんが、以下のような方法もあります。将来のバージョンで日本語対応予定です。
-%SYS.Pythonクラスの [ToList()メソッド](https://docs.intersystems.com/iris20221/csp/documatic/%25CSP.Documatic.cls?&LIBRARY=%25SYS&CLASSNAME=%25SYS.Python#ToList)を使用して、IRISリストをPythonリストに変換できます。
+(2022/5/31現在)日本語対応はしていませんが、以下のような方法もあります。将来のバージョンで日本語対応予定です。  
+%SYS.Pythonクラスの [ToList()メソッド](https://docs.intersystems.com/iris20221/csp/documatic/%25CSP.Documatic.cls?&LIBRARY=%25SYS&CLASSNAME=%25SYS.Python#ToList)を使用して、IRISリストをPythonリストに変換できます。  
 
 1. 以下のようなクラスを作成します。
 ~~~
