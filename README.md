@@ -78,8 +78,9 @@ Type quit() or Ctrl-D to exit this shell.
 ~~~
 
 ***
-(2022/5/31現在)日本語対応はしていませんが、以下のような方法もあります。将来のバージョンで日本語対応予定です。  
-%SYS.Pythonクラスの [ToList()メソッド](https://docs.intersystems.com/iris20221/csp/documatic/%25CSP.Documatic.cls?&LIBRARY=%25SYS&CLASSNAME=%25SYS.Python#ToList)を使用して、IRISリストをPythonリストに変換できます。  
+(2022/5/31現在)
+日本語対応はしていませんが、以下のような方法もあります。こちらは将来のバージョンで日本語対応予定です。  
+%SYS.Pythonクラスの [ToList()メソッド](https://docs.intersystems.com/iris20221/csp/documatic/%25CSP.Documatic.cls?&LIBRARY=%25SYS&CLASSNAME=%25SYS.Python#ToList)を使用して、IRISリストをPythonリストに変換する方法です。  
 
 1. 以下のようなクラスを作成します。
 ~~~
@@ -100,7 +101,7 @@ ClassMethod getPython(gname As %String) [ Language = python ]
     for i in range(1,cnt+1):
      datalist=iris.cls(__name__).toPythonList(gname, i)
      newlist.append(datalist)
-    newdf=pd.DataFrame(newlist,columns=["val1","val2","val3"])
+    newdf=pd.DataFrame(newlist[1:cnt],columns=[newlist[0][0],newlist[0][1],newlist[0][2]])
     print(newdf)
 }
 }
@@ -122,11 +123,10 @@ USER>do ##class(%SYS.Python).Shell()
 Python 3.9.5 (default, Apr 15 2022, 01:28:04) [MSC v.1927 64 bit (AMD64)] on win32
 Type quit() or Ctrl-D to exit this shell.
 >>> iris.cls("User.PythonTest").getPython('^ISJ2')
-   val1 val2     val3
-0  Name  Age  Address
-1  Sato   50    Tokyo
-2  Kato   40    Osaka
-3   Ito   30    Kyoto
+   Name Age Address
+0  Sato  50   Tokyo
+1  Kato  40   Osaka
+2   Ito  30   Kyoto
 ~~~
 
 
