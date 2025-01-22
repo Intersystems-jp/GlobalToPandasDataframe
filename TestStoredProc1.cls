@@ -8,6 +8,7 @@ Property glvn As %String(TRUNCATE = 1);
 ClassMethod init() [ Language = objectscript ]
 {
 	kill ^ISJ
+	set ^ISJ=4
 	set ^ISJ(1)=$lb("Name","Age","Address")
 	set ^ISJ(2)=$lb("佐藤","50","東京")
 	set ^ISJ(3)=$lb("加藤","40","大阪")
