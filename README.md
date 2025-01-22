@@ -26,6 +26,7 @@ VSCodeをご利用の方は、IRISに接続後、対象のネームスペース�
 >znspace "USER"                               // 対象のネームスペースに移動
 USER>do ##class(User.TestStoredProc1).init()  // サンプルデータ(^ISJ)の作成
 USER>zwrite ^ISJ                              // データが作成されていることを確認
+^ISJ=4
 ^ISJ(1)=$lb("Name","Age","Address")
 ^ISJ(2)=$lb("佐藤","50","東京")
 ^ISJ(3)=$lb("加藤","40","大阪")
@@ -35,7 +36,7 @@ USER>zwrite ^ISJ                              // データが作成されてい�
 ## 実行方法
 ターミナルで確認する場合は、以下のように実行します。
 ~~~
-USER>do $system.Python.Shell()
+USER>do $system.Python.Shell()     // :p だけでもOK
 
 Python 3.9.5 (default, Apr 15 2022, 01:28:04) [MSC v.1927 64 bit (AMD64)] on win32
 Type quit() or Ctrl-D to exit this shell.
@@ -43,10 +44,12 @@ Type quit() or Ctrl-D to exit this shell.
 >>> resultset = iris.sql.exec(mysql)
 >>> dataframe = resultset.dataframe()
 >>> print (dataframe)
-     node value1 value2  value3
-0 ^ISJ(1)  Name   Age Address
-1 ^ISJ(2)    佐藤    50      東京
-2 ^ISJ(3)    加藤    40      大阪
-3 ^ISJ(4)    伊藤    30      京都
+      node     value1 value2   value3
+0  ^ISJ(1)     Name    Age     Address
+1  ^ISJ(2)     佐藤     50       東京
+2  ^ISJ(3)     加藤     40       大阪
+3  ^ISJ(4)     伊藤     30       京都
+>>>
+>>>
 >>>
 ~~~
